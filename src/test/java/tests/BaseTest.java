@@ -9,6 +9,7 @@ import org.testng.annotations.Parameters;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SubscriptionsPage;
+import pages.TermsPage;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.Configuration.browser;
@@ -18,8 +19,11 @@ public class BaseTest {
     LoginPage loginpage;
     HomePage homePage;
     SubscriptionsPage subscriptionsPage;
+    TermsPage termsPage;
     public String user;
     public String pass;
+    public String url;
+    public String terms;
 
 
     @Parameters("browser")
@@ -32,17 +36,19 @@ public class BaseTest {
         }
         Configuration.headless = false;
         Configuration.timeout = 10000;
-        Configuration.baseUrl = "https://test.skyrexio.com/";
+        Configuration.baseUrl = url;
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-        Configuration.browser = "edge";
-        Configuration.timeout = 10000;
+        Configuration.timeout = 20000;
 
         loginpage = new LoginPage();
         homePage = new HomePage();
         subscriptionsPage = new SubscriptionsPage();
+        termsPage = new TermsPage();
         user = PropertyReader.getProperty("skyrexio.user");
         pass = PropertyReader.getProperty("skyrexio.pass");
+        url = PropertyReader.getProperty("skyrexio.url");
+        terms = PropertyReader.getProperty("terms.url");
     }
 
     @Step("Закрытие браузера")

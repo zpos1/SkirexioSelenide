@@ -13,7 +13,7 @@ public class HomePage extends BaseTest {
         super();
     }
 
-    public void waitPageLoading () {
+    public void waitPageLoading() {
         homePage.shouldBe(Condition.visible);
     }
 }

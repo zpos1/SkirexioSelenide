@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
@@ -14,8 +15,8 @@ public class LoginPage {
     private final SelenideElement submit = $("[type='submit']");
 
     @Step(value = "Открытие браузера")
-    public void openPage() {
-        open("login");
+    public void openPage(String url) {
+        open(url);
     }
 
     @Step(value = "Ввод логина и пароля")
@@ -27,5 +28,10 @@ public class LoginPage {
     @Step(value = "Нажатие Войти")
     public void pressSubmit() {
         submit.pressEnter();
+    }
+
+    @Step("Отображение логинпейдж")
+    public void loginpageVisible(){
+        submit.shouldBe(Condition.visible);
     }
 }
