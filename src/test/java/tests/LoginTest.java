@@ -10,17 +10,17 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Проверка корректной авторизации")
     public void projectLogin() {
-        loginpage.openPage(url);
-        loginpage.login(UserFactory.withAdminPermision());
-        loginpage.pressSubmit();
+        loginPage.openPage(url)
+                .login(UserFactory.withAdminPermision())
+                .pressSubmit();
         homePage.waitPageLoading();
     }
 
     @Test(description = "Проверка авторизации с невалидным пользователем")
     public void incorrectLogin() {
-        loginpage.openPage(url);
-        loginpage.login(UserFactory.incorrectUser());
-        loginpage.pressSubmit();
-        loginpage.loginpageVisible();
+        loginPage.openPage(url);
+        loginPage.login(UserFactory.incorrectUser());
+        loginPage.pressSubmit();
+        loginPage.errorVisible();
     }
 }

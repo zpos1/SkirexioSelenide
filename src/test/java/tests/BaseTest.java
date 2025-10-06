@@ -3,20 +3,21 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import io.qameta.allure.testng.AllureTestNg;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SubscriptionsPage;
 import pages.TermsPage;
 import utils.PropertyReader;
-
-import static com.codeborne.selenide.Configuration.browser;
+import utils.TestListener;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
+@Listeners ({AllureTestNg.class, TestListener.class})
 public class BaseTest {
-    LoginPage loginpage;
+    LoginPage loginPage;
     HomePage homePage;
     SubscriptionsPage subscriptionsPage;
     TermsPage termsPage;
@@ -25,10 +26,9 @@ public class BaseTest {
     public String url;
     public String terms;
 
-
     @Parameters("browser")
     @BeforeMethod
-    public void setUp() {
+    public void setUp(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             Configuration.browser = "chrome";
         } else if (browser.equalsIgnoreCase("edge")) {
@@ -39,9 +39,10 @@ public class BaseTest {
         Configuration.baseUrl = url;
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 20000;
+        Configuration.timeout = 10000;
+        Configuration.screenshots = true;
 
-        loginpage = new LoginPage();
+        loginPage = new LoginPage();
         homePage = new HomePage();
         subscriptionsPage = new SubscriptionsPage();
         termsPage = new TermsPage();

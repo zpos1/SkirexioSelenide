@@ -2,6 +2,8 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SubscriptionsPage {
@@ -12,6 +14,6 @@ public class SubscriptionsPage {
     @Step("Переход на страницу Subscriptions")
     public void subOpen() {
         openSubscriptionPage.pressEnter();
-        subscriptionsCurrentPlan.shouldBe();
+        subscriptionsCurrentPlan.shouldBe(visible);
     }
 }

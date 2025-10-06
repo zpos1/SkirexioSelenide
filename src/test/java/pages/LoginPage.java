@@ -13,25 +13,27 @@ public class LoginPage {
     private final String USER_CSS = "[placeholder='Email']";
     private final SelenideElement passwordEnter = $("[placeholder='Пароль']");
     private final SelenideElement submit = $("[type='submit']");
+    private final SelenideElement error = $("[class='lucide lucide-circle-alert tw-cursor-pointer tw-text-red-500']");
 
     @Step(value = "Открытие браузера")
-    public void openPage(String url) {
+    public LoginPage openPage(String url) {
         open(url);
+        return this;
     }
 
     @Step(value = "Ввод логина и пароля")
-    public void login(User user) {
+    public LoginPage login(User user) {
         $(USER_CSS).setValue(user.getEmail());
         passwordEnter.setValue(user.getPassword());
+        return this;
     }
 
     @Step(value = "Нажатие Войти")
-    public void pressSubmit() {
+    public LoginPage pressSubmit() {
         submit.pressEnter();
+        return this;
     }
 
-    @Step("Отображение логинпейдж")
-    public void loginpageVisible(){
-        submit.shouldBe(Condition.visible);
-    }
+    @Step("Отображение ошибки")
+    public void errorVisible(){ error.shouldBe(Condition.visible);}
 }

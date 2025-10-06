@@ -7,11 +7,10 @@ public class SubscriptionsTest extends BaseTest {
 
     @Test
     public void openSubscriptions() {
-        loginpage.openPage(url);
-        loginpage.login(UserFactory.withAdminPermision());
-        loginpage.pressSubmit();
+        loginPage.openPage(url);
+        loginPage.login(UserFactory.withAdminPermision());
+        loginPage.pressSubmit();
         homePage.waitPageLoading();
         subscriptionsPage.subOpen();
     }
-
 }
