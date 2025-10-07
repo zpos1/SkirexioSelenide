@@ -1,5 +1,7 @@
 package utils;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -28,8 +30,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         System.out.printf("======================================== FAILED TEST %s Duration: %ss ========================================%n", iTestResult.getName(),
                 getExecutionTime(iTestResult));
-        WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
-        takeScreenshot(driver);
+        takeScreenshot();
     }
 
     @Override
@@ -56,8 +57,13 @@ public class TestListener implements ITestListener {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
 
+
     @Attachment(value = "screenshot", type = "image/png")
-    public static byte[] takeScreenshot(WebDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public static byte[] takeScreenshot() {
+        // Для Selenide используем встроенные возможности для создания скриншотов
+        if (WebDriverRunner.hasWebDriverStarted()) {
+            return Selenide.screenshot(OutputType.BYTES);
+        }
+        return new byte[0];
     }
 }
