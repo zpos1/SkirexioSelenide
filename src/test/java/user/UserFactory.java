@@ -7,6 +7,7 @@ public class UserFactory {
         return new User(PropertyReader.getProperty("skyrexio.user"),
                         PropertyReader.getProperty("skyrexio.pass"));
     }
+
     public static User incorrectUser() {
 
         return new User(PropertyReader.getProperty("incorrect.user"),
