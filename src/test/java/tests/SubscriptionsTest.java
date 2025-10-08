@@ -7,9 +7,9 @@ public class SubscriptionsTest extends BaseTest {
 
     @Test
     public void openSubscriptions() {
-        loginPage.openPage(url);
-        loginPage.login(UserFactory.withAdminPermision());
-        loginPage.pressSubmit();
+        loginPage.openPage(url)
+                .login(UserFactory.withAdminPermision())
+                .pressSubmit();
         homePage.waitPageLoading();
         subscriptionsPage.subOpen();
     }

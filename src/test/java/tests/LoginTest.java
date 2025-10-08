@@ -18,9 +18,9 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Проверка авторизации с невалидным пользователем")
     public void incorrectLogin() {
-        loginPage.openPage(url);
-        loginPage.login(UserFactory.incorrectUser());
-        loginPage.pressSubmit();
-        loginPage.errorVisible();
+        loginPage.openPage(url)
+                .login(UserFactory.incorrectUser())
+                .pressSubmit()
+                .errorVisible();
     }
 }
