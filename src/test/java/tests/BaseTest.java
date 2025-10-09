@@ -7,10 +7,7 @@ import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SubscriptionsPage;
-import pages.TermsPage;
+import pages.*;
 import utils.PropertyReader;
 import utils.TestListener;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
@@ -21,6 +18,7 @@ public class BaseTest {
     HomePage homePage;
     SubscriptionsPage subscriptionsPage;
     TermsPage termsPage;
+    SmartTerminalPage smartTerminalPage;
     public String user;
     public String pass;
     public String url;
@@ -46,6 +44,7 @@ public class BaseTest {
         homePage = new HomePage();
         subscriptionsPage = new SubscriptionsPage();
         termsPage = new TermsPage();
+        smartTerminalPage = new SmartTerminalPage();
         user = PropertyReader.getProperty("skyrexio.user");
         pass = PropertyReader.getProperty("skyrexio.pass");
         url = PropertyReader.getProperty("skyrexio.url");
