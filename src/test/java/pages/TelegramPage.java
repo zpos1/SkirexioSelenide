@@ -9,12 +9,14 @@ public class TelegramPage {
     private final SelenideElement viewTelegramPage = $("[href='https://t.me/skyrexio']");
 
     @Step("Переход в телеграм канал")
-    public void openTelegram() {
+    public TelegramPage openTelegram() {
         viewTelegramPage.pressEnter();
+        return this;
     }
 
     @Step("Нажатие Cancel")
-    public void cancelTelegram() {
+    public TelegramPage cancelTelegram() {
         switchTo().window(1);
+        return this;
     }
 }

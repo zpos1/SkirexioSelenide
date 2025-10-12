@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 
-public class RestOnTest extends BaseTest {
+public class RestOnTest extends ApiBaseTest {
 
     @Test
     public void logOn() {

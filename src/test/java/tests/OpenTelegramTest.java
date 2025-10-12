@@ -10,7 +10,7 @@ public class OpenTelegramTest extends BaseTest {
                 .login(UserFactory.withAdminPermision())
                 .pressSubmit();
         homePage.waitPageLoading();
-        telegramPage.openTelegram();
-        telegramPage.cancelTelegram();
+        telegramPage.openTelegram()
+                .cancelTelegram();
     }
 }

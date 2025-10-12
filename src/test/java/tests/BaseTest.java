@@ -14,9 +14,6 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @Listeners ({AllureTestNg.class, TestListener.class})
 public class BaseTest {
 
-    public String devUrl;
-    public String loginJson;
-    public String passJson;
     public String user;
     public String pass;
     public String url;
@@ -36,11 +33,6 @@ public class BaseTest {
             Configuration.browser = "edge";
         }
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-infobars",
-                "--disable-notifications",
-                "--disable-popup-blocking",
-                "--no-default-browser-check",
-                "--no-first-run");
         Configuration.browserCapabilities = options;
         Configuration.headless = false;
         options.addArguments("--headless=new");
@@ -61,9 +53,6 @@ public class BaseTest {
         pass = PropertyReader.getProperty("skyrexio.pass");
         url = PropertyReader.getProperty("skyrexio.url");
         terms = PropertyReader.getProperty("terms.url");
-        loginJson = PropertyReader.getProperty("skyrexiologin.json");
-        passJson = PropertyReader.getProperty("skyrexiopass.json");
-        devUrl = PropertyReader.getProperty("devskyrexio.url");
     }
 
     @Step("Закрытие браузера")
