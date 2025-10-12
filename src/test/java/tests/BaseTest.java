@@ -4,9 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import io.qameta.allure.testng.AllureTestNg;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 import utils.PropertyReader;
@@ -16,6 +14,9 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @Listeners ({AllureTestNg.class, TestListener.class})
 public class BaseTest {
 
+    public String devUrl;
+    public String loginJson;
+    public String passJson;
     public String user;
     public String pass;
     public String url;
@@ -60,6 +61,9 @@ public class BaseTest {
         pass = PropertyReader.getProperty("skyrexio.pass");
         url = PropertyReader.getProperty("skyrexio.url");
         terms = PropertyReader.getProperty("terms.url");
+        loginJson = PropertyReader.getProperty("skyrexiologin.json");
+        passJson = PropertyReader.getProperty("skyrexiopass.json");
+        devUrl = PropertyReader.getProperty("devskyrexio.url");
     }
 
     @Step("Закрытие браузера")
